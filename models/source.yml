@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: caribou_to_ods_source
+    database: CARIBOU_TEST
+    schema: ODS
+    tables:
+      - name: ADMIN_CLIENTS
+  - name: info_schema
+    database: CARIBOU_TEST
+    schema: INFORMATION_SCHEMA
+    tables:
+      - name: COLUMNS

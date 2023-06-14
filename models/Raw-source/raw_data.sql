@@ -1,3 +1,12 @@
-{{ config(materialized='table') }}
+SELECT UPPER (COLUMN_NAME) AS COLUMN_NAME
+        FROM {{source('info_schema','COLUMNS')}}
+        WHERE TABLE_NAME = 'ADMIN_CLIENTS' AND TABLE_SCHEMA = 'ODS'
+        AND COLUMN_NAME NOT LIKE 'ETL_%'
+        ORDER BY ORDINAL_POSITION
 
-select * from analytics.public.customer
+
+SELECT UPPER (COLUMN_NAME) AS COLUMN_NAME
+        FROM {{source('info_schema','COLUMNS')}}
+        WHERE TABLE_NAME = '{{table_name}}' AND TABLE_SCHEMA = '{{src_schema}}'
+        AND COLUMN_NAME NOT LIKE 'ETL_%'
+        ORDER BY ORDINAL_POSITION;

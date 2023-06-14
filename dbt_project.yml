@@ -32,9 +32,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  Snowflake-dbt:
-    # Applies to all files under models/example/
-    on_top_models:
-      materialized: view
-    Raw-source:
-      materialized: table
+  caribou_to_ods_historical_load:
+    # Applies to all files under models/ADMIN/ADMIN_HISTORICAL_LOAD_ODS/
+    ADMIN:
+      ADMIN_HISTORICAL_LOAD_ODS:
+        # +materialized: incremental
+        +materialized: table
+        +database: DEV_EBG_DB
+        +schema: ADMIN_EDW_SCHEMA
